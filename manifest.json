@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Lin2Do",
+  "version": "0.1.0",
+  "description": "Break down Linear tickets into Todoist tasks with AI assist",
+  "permissions": [
+    "identity",
+    "storage",
+    "sidePanel",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://linear.app/*",
+    "https://api.linear.app/*",
+    "https://api.todoist.com/*",
+    "https://todoist.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.anthropic.com/*",
+    "https://console.anthropic.com/*",
+    "https://api.openai.com/*",
+    "https://openrouter.ai/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://linear.app/*"],
+      "js": ["src/content/index.ts"]
+    }
+  ],
+  "side_panel": {
+    "default_path": "src/sidepanel/index.html"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/todoist-logo.webp"],
+      "matches": ["https://linear.app/*"]
+    }
+  ]
+}
